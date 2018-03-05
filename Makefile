@@ -36,7 +36,7 @@ $(TARGET): $(BUNDLE) $(BINDATA)
 	@go build -ldflags '$(LDFLAGS)' -o $@ $(IMPORT_PATH)/server
 
 kill:
-	@kill `cat $(PID)` || true
+	@kill `cat $(PID)` 2> /dev/null || true
 
 serve: $(ON) $(GO_BINDATA) clean $(BUNDLE) restart
 	@BABEL_ENV=dev node hot.proxy &
